@@ -21,11 +21,11 @@ defmodule Mysolat.Mysolat_app do
         title = parse_data(data)
         solat_list = parse_solat_time(data)
         %{
-            "title" => title.title,
-            "zone" => title.zone,
-            "source" => title.source,
-            "right" => title.right,
-            "date" => title.date,
+            "title" => to_string(title.title),
+            "zone" => String.split(to_string(title.zone), ","),
+            "source" => to_string(title.source),
+            "right" => to_string(title.right),
+            "date" => to_string(title.date),
             "times" => make_solat_list(solat_list)
         }
     end
@@ -33,8 +33,8 @@ defmodule Mysolat.Mysolat_app do
     def make_solat_list(data) do
         Enum.map(data, fn item -> 
             %{
-                "title" => item.title,
-                "time" => item.time
+                "title" => to_string(item.title),
+                "time" => to_string(item.time)
             }
         end)
     end
